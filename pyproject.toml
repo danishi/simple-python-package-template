@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+# requires = ["setuptools", "setuptools_scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mypackage"
+description = "Simple Python package template"
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [
+  { name="Example Author", email="author@example.com" },
+]
+requires-python = ">=3.08"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dynamic = ["version"]
+
+[project.urls]
+Homepage = "https://github.com/danishi/simple-python-package-template"
+Issues = "https://github.com/danishi/simple-python-package-template/issues"
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "flake8",
+    "mypy",
+    "black",
+    "isort"
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+log_file = "pytest.log"
+
+[tool.setuptools]
+packages = ["mypackage", "mypackage.subpackage"]
+package-dir = {"" = "src"}
+
+[tool.setuptools.dynamic]
+version = {attr = "mypackage.__version__.__version__"}
+
+[tools.black]
+line-length = 100
+
+[tool.isort]
+profile = "black"
+
+[tools.flake8]
+max-line-length = 100
